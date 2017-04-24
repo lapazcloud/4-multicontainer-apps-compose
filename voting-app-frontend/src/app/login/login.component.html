@@ -1,0 +1,15 @@
+<form #f="ngForm" (ngSubmit)="login(f.value, f.valid)" novalidate class="login-form" style="margin-left: 25%; margin-right:25%; width: 50%;">
+    <br>
+    <md-input-container class="example-full-width">
+      <input type="text"
+             name="email" [(ngModel)]="voter.email"
+             #name="ngModel"
+             required
+             mdInput
+             size="45"
+             placeholder="email address..."
+             value="">
+    </md-input-container>
+
+    <button md-raised-button type="submit">Sign-In</button>
+</form>
