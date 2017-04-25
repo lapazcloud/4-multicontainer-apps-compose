@@ -6,6 +6,9 @@ const pollOptionSchema = new Schema({
   },
   description: {
     type: String
+  },
+  pollId: {
+      type: String
   }
 }, {
   timestamps: true
@@ -18,6 +21,7 @@ pollOptionSchema.methods = {
       id: this.id,
       name: this.name,
       description: this.description,
+      pollId: this.pollId,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

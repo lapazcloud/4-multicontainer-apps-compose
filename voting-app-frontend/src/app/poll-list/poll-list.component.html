@@ -1,13 +1,14 @@
+<h3 md-subheader>Create a Poll</h3>
+<app-create-poll (created)='onCreated($event)'></app-create-poll>
 <md-divider></md-divider>
-
   <md-list>
     <h3 md-subheader>Polls</h3>
-    <md-list-item *ngFor="let poll of polls">
+    <md-list-item *ngFor="let poll of polls;">
       <md-icon md-list-icon>assignment</md-icon>
       <h4 md-line>{{poll.name}}</h4>
       <p md-line> {{poll.createdAt | date}} </p>
       <span class="list-spacer"></span>
-      <button md-raised-button style="background:#20e44f; width: 200px;">Vote</button>
-      <button md-raised-button style="width: 200px;">View results</button>
+      <button md-raised-button style="width: 200px;" routerLink="/voting/{{poll.id}}">Vote</button>
+      <button md-raised-button style="width: 200px;" routerLink="/report/{{poll.id}}">View results</button>
     </md-list-item>
   </md-list>

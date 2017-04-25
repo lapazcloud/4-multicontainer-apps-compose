@@ -1,0 +1,57 @@
+<form #f="ngForm" class="poll-form" style="margin-left: 25%; margin-right:25%; width: 50%;">
+    <br>
+    <md-input-container class="example-full-width">
+        <input type="text"
+               name="name" [(ngModel)]="poll.name"
+               #name="ngModel"
+               required
+               mdInput
+               size="45"
+               placeholder="poll name..."
+               value="">
+    </md-input-container>
+    <br>
+    <md-input-container>
+        <input type="text"
+               name="optionsA" [(ngModel)]="poll.options[0]"
+               #name="ngModel"
+               required
+               mdInput
+               size="45"
+               placeholder="Option A..."
+               value="">
+    </md-input-container>
+    <md-input-container>
+        <input type="text"
+               name="optionsB" [(ngModel)]="poll.options[1]"
+               #name="ngModel"
+               required
+               mdInput
+               size="45"
+               placeholder="Option B..."
+               value="">
+    </md-input-container>
+        <br>
+    <md-input-container>
+        <input type="text"
+               name="optionsC" [(ngModel)]="poll.options[2]"
+               #name="ngModel"
+
+               mdInput
+               size="45"
+               placeholder="Option C..."
+               value="">
+    </md-input-container>
+    <md-input-container>
+        <input type="text"
+               name="optionsD" [(ngModel)]="poll.options[3]"
+               #name="ngModel"
+
+               mdInput
+               size="45"
+               placeholder="Option D..."
+               value="">
+    </md-input-container>
+    <br>
+    <button md-raised-button (click)="createPoll(f.value, f.valid)">Create</button>
+</form>

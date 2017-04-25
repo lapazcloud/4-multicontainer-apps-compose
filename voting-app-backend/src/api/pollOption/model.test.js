@@ -3,7 +3,7 @@ import { PollOption } from '.'
 let pollOption
 
 beforeEach(async () => {
-  pollOption = await PollOption.create({ name: 'test', description: 'test' })
+  pollOption = await PollOption.create({ name: 'test', description: 'test', pollId: 'somePoll'})
 })
 
 describe('view', () => {

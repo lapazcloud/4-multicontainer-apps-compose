@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {PollListComponent} from './poll-list/poll-list.component';
 import {VotingComponent} from './voting/voting.component';
+import {ReportComponent} from "./report/report.component";
 
 const routes: Routes = <Routes>[
     {
@@ -14,7 +15,11 @@ const routes: Routes = <Routes>[
         component: PollListComponent
     },
     {
-        path: 'voting',
+        path: 'report/:id',
+        component: ReportComponent
+    },
+    {
+        path: 'voting/:id',
         component: VotingComponent
     },
     {

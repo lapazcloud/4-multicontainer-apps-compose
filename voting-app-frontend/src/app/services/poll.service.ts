@@ -31,4 +31,56 @@ export class PollService {
             return res.json();
         });
     }
+
+    createPoll(form: any) {
+        return this.http.post('http://localhost:9000/polls', form).map((res: Response) => {
+            return res.json();
+        }).subscribe((poll: any) => {
+            console.log(poll.id);
+            const optionA = {
+                name: form.optionsA,
+                description: form.optionsA,
+                pollId: poll.id
+            };
+            this.http.post('http://localhost:9000/pollOptions', optionA).map((res: Response) => {
+                return res.json();
+            }).subscribe();
+            const optionB = {
+                name: form.optionsB,
+                description: form.optionsB,
+                pollId: poll.id
+            };
+            this.http.post('http://localhost:9000/pollOptions', optionB).map((res: Response) => {
+                return res.json();
+            }).subscribe();
+            const optionC = {
+                name: form.optionsC,
+                description: form.optionsC,
+                pollId: poll.id
+            };
+            this.http.post('http://localhost:9000/pollOptions', optionC).map((res: Response) => {
+                return res.json();
+            }).subscribe();
+            const optionD = {
+                name: form.optionsD,
+                description: form.optionsD,
+                pollId: poll.id
+            };
+            this.http.post('http://localhost:9000/pollOptions', optionD).map((res: Response) => {
+                return res.json();
+            }).subscribe();
+        });
+    }
+
+    getPoll(id: any) {
+        return this.http.get('http://localhost:9000/polls/' + id).map((res: Response) => {
+            return res.json();
+        });
+    }
+
+    getPollOptions(id: any) {
+        return this.http.get('http://localhost:9000/pollOptions?pollId=' + id).map((res: Response) => {
+            return res.json();
+        });
+    }
 }

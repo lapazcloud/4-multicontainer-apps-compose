@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PollService} from "../services/poll.service";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-voting',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./voting.component.css']
 })
 export class VotingComponent implements OnInit {
+  private name: string;
+  private options: any[];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private pollService: PollService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.pollService.getPoll(params['id']).subscribe((poll: any) => {
+        this.name = poll.name;
+        this.pollService.getPollOptions(params['id']).subscribe((options: any) => {
+          const processedOptions = [];
+          for (const option of options) {
+            if (option.pollId === params['id']) {
+              processedOptions.push(option);
+            }
+          }
+          this.options = processedOptions;
+        });
+      });
+    });
   }
 
 }

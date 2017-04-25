@@ -6,7 +6,7 @@ import { schema } from './model'
 export PollOption, { schema } from './model'
 
 const router = new Router()
-const { name, description } = schema.tree
+const { name, description, pollId } = schema.tree
 
 /**
  * @api {post} /pollOptions Create poll option
@@ -19,7 +19,7 @@ const { name, description } = schema.tree
  * @apiError 404 Poll option not found.
  */
 router.post('/',
-  body({ name, description }),
+  body({ name, description, pollId }),
   create)
 
 /**
@@ -56,7 +56,7 @@ router.get('/:id',
  * @apiError 404 Poll option not found.
  */
 router.put('/:id',
-  body({ name, description }),
+  body({ name, description, pollId }),
   update)
 
 /**

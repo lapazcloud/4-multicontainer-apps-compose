@@ -16,4 +16,11 @@ export class PollListComponent implements OnInit {
     });
   }
 
+  onCreated(event) {
+      setTimeout (() => {
+          this.pollService.getPolls().subscribe((polls) => {
+              this.polls = polls;
+          });
+      }, 200);
+  }
 }

@@ -11,7 +11,8 @@ import { PollListComponent } from './poll-list/poll-list.component';
 import { VotingComponent } from './voting/voting.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdIconModule, MdInputModule, MdListModule, MdToolbarModule} from '@angular/material';
-import {PollService} from "./services/poll.service";
+import {PollService} from './services/poll.service';
+import {CreatePollComponent} from './poll-list/create-poll.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {PollService} from "./services/poll.service";
       LoginComponent,
       ReportComponent,
       PollListComponent,
+      CreatePollComponent,
       VotingComponent
   ],
   imports: [
