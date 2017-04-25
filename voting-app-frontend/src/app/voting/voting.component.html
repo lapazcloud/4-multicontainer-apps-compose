@@ -3,7 +3,13 @@
   <md-divider></md-divider>
 
   <h3 md-subheader>Vote:</h3>
-  <md-list-item *ngFor="let option of options;">
-    {{option.name}}
-  </md-list-item>
+  <div>
+    <md-button-toggle-group class="voting-form" #group="mdButtonToggleGroup" vertical>
+      <md-button-toggle *ngFor="let option of options;" value="{{option.id}}">
+        <md-icon>star_rate</md-icon> {{option.name}}
+      </md-button-toggle>
+    </md-button-toggle-group>
+    <br><br>
+    <button md-raised-button class="voting-button mat-accent" (click)="vote(group.value)">Vote</button>
+  </div>
 </md-list>

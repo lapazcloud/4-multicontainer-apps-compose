@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
   login(form, valid) {
     this.pollService.getVoter(form.email).subscribe((voter: any) => {
       if (voter) {
-        localStorage.setItem('voter', voter.id);
+        localStorage.setItem('voter', JSON.stringify(voter));
       } else {
         this.pollService.addVoter(form).subscribe((registeredVoter: any) => {
-          localStorage.setItem('voter', registeredVoter.id);
+          localStorage.setItem('voter', JSON.stringify(registeredVoter));
         });
       }
       this.router.navigate(['polls']);

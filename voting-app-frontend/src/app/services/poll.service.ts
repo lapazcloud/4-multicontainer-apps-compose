@@ -9,7 +9,7 @@ export class PollService {
     }
 
     getVoter(email): Observable<any[]> {
-        return this.http.get('http://localhost:9000/voters').map((res: Response) => {
+        return this.http.get('http://localhost:8080/voters').map((res: Response) => {
             const voters = res.json();
             for (const voter of voters) {
                 if (voter.email === email) {
@@ -21,19 +21,19 @@ export class PollService {
     }
 
     addVoter(form): Observable<any[]> {
-        return this.http.post('http://localhost:9000/voters', form).map((res: Response) => {
+        return this.http.post('http://localhost:8080/voters', form).map((res: Response) => {
             return res.json();
         });
     }
 
     getPolls() {
-        return this.http.get('http://localhost:9000/polls').map((res: Response) => {
+        return this.http.get('http://localhost:8080/polls').map((res: Response) => {
             return res.json();
         });
     }
 
     createPoll(form: any) {
-        return this.http.post('http://localhost:9000/polls', form).map((res: Response) => {
+        return this.http.post('http://localhost:8080/polls', form).map((res: Response) => {
             return res.json();
         }).subscribe((poll: any) => {
             console.log(poll.id);
@@ -42,7 +42,7 @@ export class PollService {
                 description: form.optionsA,
                 pollId: poll.id
             };
-            this.http.post('http://localhost:9000/pollOptions', optionA).map((res: Response) => {
+            this.http.post('http://localhost:8080/pollOptions', optionA).map((res: Response) => {
                 return res.json();
             }).subscribe();
             const optionB = {
@@ -50,7 +50,7 @@ export class PollService {
                 description: form.optionsB,
                 pollId: poll.id
             };
-            this.http.post('http://localhost:9000/pollOptions', optionB).map((res: Response) => {
+            this.http.post('http://localhost:8080/pollOptions', optionB).map((res: Response) => {
                 return res.json();
             }).subscribe();
             const optionC = {
@@ -58,7 +58,7 @@ export class PollService {
                 description: form.optionsC,
                 pollId: poll.id
             };
-            this.http.post('http://localhost:9000/pollOptions', optionC).map((res: Response) => {
+            this.http.post('http://localhost:8080/pollOptions', optionC).map((res: Response) => {
                 return res.json();
             }).subscribe();
             const optionD = {
@@ -66,20 +66,28 @@ export class PollService {
                 description: form.optionsD,
                 pollId: poll.id
             };
-            this.http.post('http://localhost:9000/pollOptions', optionD).map((res: Response) => {
+            console.log(optionD);
+            this.http.post('http://localhost:8080/pollOptions', optionD).map((res: Response) => {
                 return res.json();
+
             }).subscribe();
         });
     }
 
     getPoll(id: any) {
-        return this.http.get('http://localhost:9000/polls/' + id).map((res: Response) => {
+        return this.http.get('http://localhost:8080/polls/' + id).map((res: Response) => {
             return res.json();
         });
     }
 
     getPollOptions(id: any) {
-        return this.http.get('http://localhost:9000/pollOptions?pollId=' + id).map((res: Response) => {
+        return this.http.get('http://localhost:8080/pollOptions?pollId=' + id).map((res: Response) => {
+            return res.json();
+        });
+    }
+
+    vote(vote) {
+        return this.http.put('http://localhost:8080/votes', vote).map((res: Response) => {
             return res.json();
         });
     }

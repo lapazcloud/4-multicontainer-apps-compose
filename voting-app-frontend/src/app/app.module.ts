@@ -10,7 +10,7 @@ import { ReportComponent } from './report/report.component';
 import { PollListComponent } from './poll-list/poll-list.component';
 import { VotingComponent } from './voting/voting.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdIconModule, MdInputModule, MdListModule, MdToolbarModule} from '@angular/material';
+import {MdButtonModule, MdIconModule, MdInputModule, MdListModule, MdToolbarModule, MdButtonToggleModule} from '@angular/material';
 import {PollService} from './services/poll.service';
 import {CreatePollComponent} from './poll-list/create-poll.component';
 
@@ -33,6 +33,7 @@ import {CreatePollComponent} from './poll-list/create-poll.component';
     MdIconModule,
     MdInputModule,
     MdButtonModule,
+    MdButtonToggleModule,
     AppRoutingModule
   ],
   providers: [
