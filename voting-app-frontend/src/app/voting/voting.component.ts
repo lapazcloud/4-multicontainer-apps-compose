@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PollService} from '../services/poll.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
     selector: 'app-voting',
@@ -12,7 +12,7 @@ export class VotingComponent implements OnInit {
     private poll: string;
     private options: any[];
 
-    constructor(private route: ActivatedRoute, private pollService: PollService) {
+    constructor(private router: Router, private route: ActivatedRoute, private pollService: PollService) {
     }
 
     ngOnInit() {
@@ -42,6 +42,9 @@ export class VotingComponent implements OnInit {
         };
         this.pollService.vote(vote).subscribe((registeredVote: any) => {
             console.log(registeredVote);
+            this.pollService.addVote(vote, this.poll).subscribe(() => {
+                this.router.navigate(['report', this.poll]);
+            });
         });
     }
 }

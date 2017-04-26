@@ -36,7 +36,6 @@ export class PollService {
         return this.http.post('http://localhost:8080/polls', form).map((res: Response) => {
             return res.json();
         }).subscribe((poll: any) => {
-            console.log(poll.id);
             const optionA = {
                 name: form.optionsA,
                 description: form.optionsA,
@@ -44,33 +43,57 @@ export class PollService {
             };
             this.http.post('http://localhost:8080/pollOptions', optionA).map((res: Response) => {
                 return res.json();
-            }).subscribe();
-            const optionB = {
-                name: form.optionsB,
-                description: form.optionsB,
-                pollId: poll.id
-            };
-            this.http.post('http://localhost:8080/pollOptions', optionB).map((res: Response) => {
-                return res.json();
-            }).subscribe();
-            const optionC = {
-                name: form.optionsC,
-                description: form.optionsC,
-                pollId: poll.id
-            };
-            this.http.post('http://localhost:8080/pollOptions', optionC).map((res: Response) => {
-                return res.json();
-            }).subscribe();
-            const optionD = {
-                name: form.optionsD,
-                description: form.optionsD,
-                pollId: poll.id
-            };
-            console.log(optionD);
-            this.http.post('http://localhost:8080/pollOptions', optionD).map((res: Response) => {
-                return res.json();
+            }).subscribe((savedOptionA) => {
+                optionA['id'] = savedOptionA.id;
+                const optionB = {
+                    name: form.optionsB,
+                    description: form.optionsB,
+                    pollId: poll.id
+                };
+                this.http.post('http://localhost:8080/pollOptions', optionB).map((res: Response) => {
+                    return res.json();
+                }).subscribe((savedOptionB) => {
+                    optionB['id'] = savedOptionB.id;
+                    const optionC = {
+                        name: form.optionsC,
+                        description: form.optionsC,
+                        pollId: poll.id
+                    };
+                    this.http.post('http://localhost:8080/pollOptions', optionC).map((res: Response) => {
+                        return res.json();
+                    }).subscribe((savedOptionC) => {
+                        optionC['id'] = savedOptionC.id;
+                        const optionD = {
+                            name: form.optionsD,
+                            description: form.optionsD,
+                            pollId: poll.id
+                        };
+                        console.log(optionD);
+                        this.http.post('http://localhost:8080/pollOptions', optionD).map((res: Response) => {
+                            return res.json();
 
-            }).subscribe();
+                        }).subscribe((savedOptionD) => {
+                            optionD['id'] = savedOptionD.id;
+                            optionA['count'] = 0;
+                            optionB['count'] = 0;
+                            optionC['count'] = 0;
+                            optionD['count'] = 0;
+                            const report = {
+                                name: poll.name,
+                                pollId: poll.id,
+                                results: JSON.stringify([
+                                    optionA,
+                                    optionB,
+                                    optionC,
+                                    optionD
+                                ])
+                            };
+
+                            this.createReport(report).subscribe();
+                        });
+                    });
+                });
+            });
         });
     }
 
@@ -87,7 +110,19 @@ export class PollService {
     }
 
     vote(vote) {
-        return this.http.put('http://localhost:8080/votes', vote).map((res: Response) => {
+        return this.http.post('http://localhost:8080/votes', vote).map((res: Response) => {
+            return res.json();
+        });
+    }
+
+    createReport(report) {
+        return this.http.post('http://localhost:8081/reports', report).map((res: Response) => {
+            return res.json();
+        });
+    }
+
+    addVote(vote, pollId) {
+        return this.http.post('http://localhost:8081/reports/' + pollId, vote).map((res: Response) => {
             return res.json();
         });
     }
