@@ -8,9 +8,9 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
     styleUrls: ['./voting.component.css']
 })
 export class VotingComponent implements OnInit {
-    private name: string;
-    private poll: string;
-    private options: any[];
+    name: string;
+    poll: string;
+    options: any[];
 
     constructor(private router: Router, private route: ActivatedRoute, private pollService: PollService) {
     }

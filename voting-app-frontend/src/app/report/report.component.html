@@ -1,3 +1,9 @@
-<p>
-  report works!
-</p>
+<div class="center-component">
+  <h1>{{name}}</h1>
+  <ngx-charts-advanced-pie-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="results"
+          (select)="onSelect($event)">
+  </ngx-charts-advanced-pie-chart>
+</div>

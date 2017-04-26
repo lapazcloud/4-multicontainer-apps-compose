@@ -7,7 +7,7 @@ import {PollService} from "../services/poll.service";
   styleUrls: ['./poll-list.component.css']
 })
 export class PollListComponent implements OnInit {
-  private polls: any;
+  polls: any;
   constructor(private pollService: PollService) { }
 
   ngOnInit() {

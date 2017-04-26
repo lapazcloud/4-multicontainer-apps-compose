@@ -14,7 +14,7 @@ var report = require('./routes/report');
 var mongoose = require('mongoose');
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://localhost/reports';
+var mongoDB = 'mongodb://database/voting-reports';
 mongoose.connect(mongoDB);
 
 //Get the default connection

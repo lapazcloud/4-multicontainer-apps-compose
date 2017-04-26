@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CreatePollComponent implements OnInit {
     @Output() created: EventEmitter<string> = new EventEmitter<string>();
-    private poll;
+    poll: any;
 
     constructor(private pollService: PollService, private router: Router) { }
 

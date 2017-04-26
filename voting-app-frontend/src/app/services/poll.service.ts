@@ -121,6 +121,12 @@ export class PollService {
         });
     }
 
+    getReport(pollId) {
+        return this.http.get('http://localhost:8081/reports/' + pollId).map((res: Response) => {
+            return res.json();
+        });
+    }
+
     addVote(vote, pollId) {
         return this.http.post('http://localhost:8081/reports/' + pollId, vote).map((res: Response) => {
             return res.json();

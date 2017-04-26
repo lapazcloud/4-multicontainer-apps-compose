@@ -3,6 +3,19 @@
     <img class="toolbar-logo" src="assets/images/brand.svg">
     <h1 class="toolbar-title" >Super Voting - App</h1>
     <span class="toolbar-spacer"></span>
+    <div *ngIf="loggedUser">
+      {{loggedUser.name}}
+      <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+      </button>
+      <md-menu #menu="mdMenu">
+        <button md-menu-item (click)="logout()">
+          <md-icon>arrow_back</md-icon>
+          <span>Logout</span>
+        </button>
+      </md-menu>
+    </div>
+
   </md-toolbar-row>
 </md-toolbar>
 <router-outlet></router-outlet>

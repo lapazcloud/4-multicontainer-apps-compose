@@ -1,12 +1,12 @@
-import { Router } from 'express'
-import { middleware as query } from 'querymen'
-import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy } from './controller'
-import { schema } from './model'
-export Vote, { schema } from './model'
+import {Router} from 'express'
+import {middleware as query} from 'querymen'
+import {middleware as body} from 'bodymen'
+import {create, index, show, update, destroy} from './controller'
+import {schema} from './model'
+export Vote, {schema} from './model'
 
 const router = new Router()
-const { voter, pollOption, poll } = schema.tree
+const {voter, pollOption, poll} = schema.tree
 
 /**
  * @api {post} /votes Create vote
@@ -20,8 +20,8 @@ const { voter, pollOption, poll } = schema.tree
  * @apiError 404 Vote not found.
  */
 router.post('/',
-  body({ voter, pollOption, poll }),
-  create)
+    body({voter, pollOption, poll}),
+    create)
 
 /**
  * @api {get} /votes Retrieve votes
@@ -32,8 +32,8 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-  query(),
-  index)
+    query(),
+    index)
 
 /**
  * @api {get} /votes/:id Retrieve vote
@@ -44,7 +44,7 @@ router.get('/',
  * @apiError 404 Vote not found.
  */
 router.get('/:id',
-  show)
+    show)
 
 /**
  * @api {put} /votes/:id Update vote
@@ -58,8 +58,8 @@ router.get('/:id',
  * @apiError 404 Vote not found.
  */
 router.put('/:id',
-  body({ voter, pollOption, poll }),
-  update)
+    body({voter, pollOption, poll}),
+    update)
 
 /**
  * @api {delete} /votes/:id Delete vote
@@ -69,6 +69,6 @@ router.put('/:id',
  * @apiError 404 Vote not found.
  */
 router.delete('/:id',
-  destroy)
+    destroy)
 
 export default router
