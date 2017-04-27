@@ -13,6 +13,14 @@ services:
     ports:
       - "8080:8080"
       - "9000:9000"
+  voting-report:
+    build:
+      context: ./voting-app-report
+      dockerfile: docker/Dockerfile-report
+    networks:
+      - main
+    ports:
+      - "8081:8081"
   voting-front-end:
     image: nginx:1.12.0-alpine
     volumes:
@@ -21,13 +29,6 @@ services:
       - main
     ports:
       - "8000:80"
-  voting-report:
-    context: ./voting-app-report
-    dockerfile: Dockerfile-report
-    networks:
-      - main
-    ports:
-      - "8081:8081"
 networks:
   main:
     driver: bridge
