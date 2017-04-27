@@ -1,0 +1,33 @@
+version: "2"
+services:
+  database:
+    image: mvertes/alpine-mongo:3.4.3-0
+    networks:
+      - main
+    ports:
+      - "27017:27017"
+  voting-backend:
+    build: ./voting-app-backend
+    networks:
+      - main
+    ports:
+      - "8080:8080"
+      - "9000:9000"
+  voting-front-end:
+    image: nginx:1.12.0-alpine
+    volumes:
+      - ./voting-app-frontend/dist:/usr/share/nginx/html
+    networks:
+      - main
+    ports:
+      - "8000:80"
+  voting-report:
+    context: ./voting-app-report
+    dockerfile: Dockerfile-report
+    networks:
+      - main
+    ports:
+      - "8081:8081"
+networks:
+  main:
+    driver: bridge

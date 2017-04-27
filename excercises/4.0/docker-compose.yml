@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
   database:
     image: mvertes/alpine-mongo:3.4.3-0
@@ -14,7 +14,9 @@ services:
       - "8080:8080"
       - "9000:9000"
   voting-report:
-    build: ./voting-app-report
+    build:
+      context: ./voting-app-report
+      dockerfile: docker/Dockerfile-report
     networks:
       - main
     ports:
